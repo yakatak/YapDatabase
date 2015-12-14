@@ -3,12 +3,11 @@
 #import "BenchmarkYapCache.h"
 #import "BenchmarkYapDatabase.h"
 
-#import "YapDatabase.h"
+#import <YapDatabase/YapDatabase.h>
 
 @implementation AppDelegate
 {
 	YapDatabase *database;
-	YapDatabaseConnection *connection;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -54,7 +53,7 @@
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark WAL Size Test
+#pragma mark Debugging
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (NSString *)databaseFilePath
