@@ -732,15 +732,6 @@ NSString *const YapDatabaseNotificationKey           = @"notification";
 		YDBLogError(@"Error setting PRAGMA journal_size_limit: %d %s", status, sqlite3_errmsg(db));
 		// This isn't critical, so we can continue.
 	}
-
-    // Smoke the WAL
-    //
-    // This is a bandaid solution to a race condition that results in an aggressive checkpoint wait lock
-    status = sqlite3_wal_checkpoint_v2(db, "main", SQLITE_CHECKPOINT_FULL, NULL, NULL);
-    if (status != SQLITE_OK)
-    {
-        YDBLogError(@"Error running full checkpoint on startup: %d %s", status, sqlite3_errmsg(db));
-    }
 	
 	// Set mmap_size (if needed).
 	//
