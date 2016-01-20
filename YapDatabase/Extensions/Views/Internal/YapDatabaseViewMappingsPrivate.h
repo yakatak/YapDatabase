@@ -24,6 +24,11 @@
 - (void)setAutoConsolidatingDisabled:(BOOL)disabled;
 
 /**
+ *
+ * 
+ **/
+
+/**
  * Returns a mutable copy of the count dictionary, where:
  * key = group
  * value = NSNumber of count of items

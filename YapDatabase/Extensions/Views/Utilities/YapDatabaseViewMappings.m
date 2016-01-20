@@ -48,6 +48,7 @@
 	NSMutableDictionary *dependencies;
 	NSUInteger autoConsolidateGroupsThreshold;
 	NSString *consolidatedGroupName;
+    NSUInteger viewSizeLimit;
 	
 	// Snapshot (used for error detection)
 	uint64_t snapshotOfLastUpdate;
@@ -55,6 +56,7 @@
 
 @synthesize allGroups = allGroups;
 @synthesize view = registeredViewName;
+@synthesize viewSizeLimit = viewSizeLimit;
 
 @synthesize snapshotOfLastUpdate = snapshotOfLastUpdate;
 
@@ -331,6 +333,15 @@
 	return consolidatedGroupName;
 }
 
+- (void)setViewSizeLimit:(NSUInteger)limit
+{
+    if (!viewGroupsAreDynamic) {
+        YDBLogWarn(@"setting the viewSizeLimit on mappings with static groups has no effect");
+        return;
+    }
+    viewSizeLimit = limit;
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Initialization & Updates
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -558,6 +569,9 @@
 		}
 		
 		totalCount += count;
+
+        if (viewGroupsAreDynamic && viewSizeLimit > 0 && totalCount >= viewSizeLimit)
+            break;
 	}
 	
 	if (totalCount < autoConsolidateGroupsThreshold)

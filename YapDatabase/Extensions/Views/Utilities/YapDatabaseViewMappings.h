@@ -237,6 +237,17 @@ typedef NSComparisonResult (^YapDatabaseViewMappingGroupSort)(NSString *group1, 
 **/
 @property (nonatomic, copy, readonly) NSString *view;
 
+/**
+ * The absolute limit of items in a view with dynamic groups. A limit of 0 means that the limit is unbound.
+ * Set this value if you need to apply a total limit on the items in the view after the groups have been filtered, sorted, 
+ * and have had their range options applied. The effect of setting this property will not take effect until after
+ * the next call to [mappings updateWithTransaction:transaction];
+ *
+ * This is useful when you want the functionality that multiple dynamic groups provide (sections in a table or collection view)
+ * but you need to clamp the total size of the data displayed
+**/
+@property (nonatomic, readwrite) NSUInteger viewSizeLimit;
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Configuration
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
