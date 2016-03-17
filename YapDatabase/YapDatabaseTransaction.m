@@ -3845,6 +3845,9 @@
 - (id)extension:(NSString *)extensionName
 {
 	// This method is PUBLIC
+
+    // Swift string protection
+    extensionName = [[extensionName mutableCopy] copy];
 	
 	if (extensionsReady)
 		return [extensions objectForKey:extensionName];
@@ -5657,6 +5660,9 @@
 - (void)addRegisteredExtensionTransaction:(YapDatabaseExtensionTransaction *)extTransaction withName:(NSString *)extName
 {
 	// This method is INTERNAL
+
+    // Swift string protection
+    extName = [[extName mutableCopy] copy];
 	
 	if (extensions == nil)
 		extensions = [[NSMutableDictionary alloc] init];

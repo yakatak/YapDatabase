@@ -162,7 +162,7 @@
 	filtering = newFiltering;
 	filteringChanged = YES;
 	
-	versionTag = newVersionTag;
+	versionTag = [[newVersionTag mutableCopy] copy];
 	versionTagChanged = YES;
 }
 

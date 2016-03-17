@@ -1596,6 +1596,8 @@
 	
 	NSParameterAssert(collectionKey != nil);
 	NSParameterAssert(group != nil);
+
+    group = [[group mutableCopy] copy];
 	
 	// First object added to group.
 	
@@ -1662,6 +1664,8 @@
 	
 	NSParameterAssert(collectionKey != nil);
 	NSParameterAssert(group != nil);
+
+    group = [[group mutableCopy] copy];
 	
 	// Find pageMetadata, pageKey and page
 	
@@ -1789,6 +1793,8 @@
 	YapDatabaseViewSorting *sorting = nil;
 	
 	[viewConnection getSorting:&sorting];
+
+    group = [[group mutableCopy] copy];
 	
 	// Is the key already in the group?
 	// If so:
@@ -2091,6 +2097,8 @@
 	
 	NSParameterAssert(collectionKey != nil);
 	NSParameterAssert(group != nil);
+
+    group = [[group mutableCopy] copy];
 	
 	// Fetch page
 	
@@ -2177,7 +2185,9 @@
 	NSParameterAssert(collectionKey != nil);
 	NSParameterAssert(pageKey != nil);
 	NSParameterAssert(group != nil);
-	
+
+    group = [[group mutableCopy] copy];
+
 	// Fetch page & pageMetadata
 	
 	YapDatabaseViewPage *page = [self pageForPageKey:pageKey];
@@ -2387,6 +2397,8 @@
 {
 	NSArray *pagesMetadataForGroup = [viewConnection->state pagesMetadataForGroup:group];
 	NSMutableArray *removedRowids = [NSMutableArray array];
+
+    group = [[group mutableCopy] copy];
 	
 	for (YapDatabaseViewPageMetadata *pageMetadata in pagesMetadataForGroup)
 	{
@@ -4938,7 +4950,7 @@
 		return;
 	}
 	
-	NSString *newVersionTag = inVersionTag ? [inVersionTag copy] : @"";
+	NSString *newVersionTag = inVersionTag ? [[inVersionTag mutableCopy] copy] : @"";
 	
 	if ([[self versionTag] isEqualToString:newVersionTag])
 	{

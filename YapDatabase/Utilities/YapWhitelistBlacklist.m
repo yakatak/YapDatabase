@@ -14,7 +14,20 @@
 {
 	if ((self = [super init]))
 	{
-		whitelist = inWhitelist ? [inWhitelist copy] : [[NSSet alloc] init];
+        if (inWhitelist) {
+            NSMutableSet *setCopy = [NSMutableSet setWithCapacity:[inWhitelist count]];
+            for (id obj in inWhitelist) {
+                if ([obj isKindOfClass:[NSString class]]) {
+                    [setCopy addObject:[[obj mutableCopy] copy]];
+                }
+                else {
+                    [setCopy addObject:obj];
+                }
+            }
+            whitelist = [setCopy copy];
+        } else {
+            whitelist = [NSSet set];
+        }
 	}
 	return self;
 }
@@ -24,7 +37,21 @@
 {
 	if ((self = [super init]))
 	{
-		blacklist = inBlacklist ? [inBlacklist copy] : [[NSSet alloc] init];
+        if (inBlacklist) {
+            NSMutableSet *setCopy = [NSMutableSet setWithCapacity:[inBlacklist count]];
+            for (id obj in inBlacklist) {
+                if ([obj isKindOfClass:[NSString class]]) {
+                    [setCopy addObject:[[obj mutableCopy] copy]];
+                }
+                else {
+                    [setCopy addObject:obj];
+                }
+            }
+
+            blacklist = [setCopy copy];
+        } else {
+            blacklist = [NSSet set];
+        }
 	}
 	return self;
 }

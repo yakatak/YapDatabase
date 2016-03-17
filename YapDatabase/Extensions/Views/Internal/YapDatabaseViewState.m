@@ -126,6 +126,8 @@
 - (NSArray *)createGroup:(NSString *)group withCapacity:(NSUInteger)capacity
 {
 	AssertIsMutable();
+
+    group = [[group mutableCopy] copy];
 	
 	NSMutableArray *pagesMetadataForGroup = [group_pagesMetadata_dict objectForKey:group];
 	if (pagesMetadataForGroup == nil)
@@ -146,6 +148,8 @@
 {
 	AssertIsMutable();
 	NSParameterAssert(pageMetadata != nil);
+
+    group = [[group mutableCopy] copy];
 	
 	[pageKey_group_dict setObject:group forKey:pageMetadata->pageKey];
 	
@@ -161,6 +165,8 @@
 {
 	AssertIsMutable();
 	NSParameterAssert(pageMetadata != nil);
+
+    group = [[group mutableCopy] copy];
 	
 	[pageKey_group_dict setObject:group forKey:pageMetadata->pageKey];
 	

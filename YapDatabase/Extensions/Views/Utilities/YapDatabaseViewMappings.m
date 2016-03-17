@@ -68,7 +68,11 @@
 {
 	if ((self = [super init]))
 	{
-        allGroups = [[NSArray alloc] initWithArray:inGroups copyItems:YES];
+        NSMutableArray *groupCopy = [NSMutableArray arrayWithCapacity:[inGroups count]];
+        for (NSString *group in inGroups) {
+            [groupCopy addObject:[[group mutableCopy] copy]];
+        }
+        allGroups = [[NSArray alloc] initWithArray:groupCopy copyItems:YES];
 		NSUInteger allGroupsCount = [allGroups count];
         viewGroupsAreDynamic = NO;
 		
@@ -110,7 +114,7 @@
 
 - (void)commonInit:(NSString *)inRegisteredViewName
 {
-	registeredViewName = [inRegisteredViewName copy];
+	registeredViewName = [[inRegisteredViewName mutableCopy] copy];
 	snapshotOfLastUpdate = UINT64_MAX;
 }
 
@@ -164,7 +168,7 @@
 		return;
 	}
 	
-	[dynamicSections setObject:@(isDynamic) forKey:group];
+	[dynamicSections setObject:@(isDynamic) forKey:[[group mutableCopy] copy]];
 }
 
 - (BOOL)isDynamicSectionForGroup:(NSString *)group
@@ -198,6 +202,8 @@
 		YDBLogWarn(@"%@ - mappings doesn't contain group(%@), only: %@", THIS_METHOD, group, allGroups);
 		return;
 	}
+
+    group = [[group mutableCopy] copy];
 	
 	// Store private immutable copy
 	if ([reverse containsObject:group])
@@ -272,7 +278,7 @@
 		}
 	}
 
-	[dependencies setObject:[validOffsets copy] forKey:group];
+	[dependencies setObject:[validOffsets copy] forKey:[[group mutableCopy] copy]];
 }
 
 - (NSSet *)cellDrawingDependencyOffsetsForGroup:(NSString *)group
@@ -302,6 +308,8 @@
 		YDBLogWarn(@"%@ - mappings doesn't contain group(%@), only: %@", THIS_METHOD, group, allGroups);
 		return;
 	}
+
+    group = [[group mutableCopy] copy];
 	
 	if (isReversed)
 		[reverse addObject:group];
@@ -414,7 +422,11 @@
 
 - (void)updateMappingsWithNewGroups:(NSArray *)newAllGroups
 {
-	allGroups = [newAllGroups copy];
+    NSMutableArray *groupsCopy = [NSMutableArray arrayWithCapacity:[newAllGroups count]];
+    for (NSString *group in newAllGroups) {
+        [groupsCopy addObject:[[group mutableCopy] copy]];
+    }
+	allGroups = [groupsCopy copy];
     [self validateAutoConsolidation];
     id sharedKeySet = [NSDictionary sharedKeySetForKeys:allGroups];
     counts = [NSMutableDictionary dictionaryWithSharedKeySet:sharedKeySet];
@@ -439,7 +451,7 @@
 	for (NSString *group in groups)
 	{
 		if (groupFilterBlock(group, transaction)) {
-			[newAllGroups addObject:group];
+			[newAllGroups addObject:[[group mutableCopy] copy]];
 		}
 	}
 	
@@ -507,6 +519,8 @@
 - (void)updateRangeOptions:(YapDatabaseViewRangeOptions *)rangeOpts forGroup:(NSString *)group
 {
 	// Set a valid rangeOpts.length using the known group count
+
+    group = [[group mutableCopy] copy];
 	
 	NSUInteger count = [[counts objectForKey:group] unsignedIntegerValue];
 	
@@ -530,6 +544,8 @@
 **/
 - (void)updateRangeOptionsForGroup:(NSString *)group withNewLength:(NSUInteger)newLength newOffset:(NSUInteger)newOffset
 {
+    group = [[group mutableCopy] copy];
+
 	YapDatabaseViewRangeOptions *rangeOpts = [rangeOptions objectForKey:group];
 	if (rangeOpts)
 	{

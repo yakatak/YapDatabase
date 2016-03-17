@@ -4639,8 +4639,8 @@ NS_INLINE BOOL URLMatchesURL(NSURL *url1, NSURL *url2)
 			
 			if (edge->sourceKey == nil)
 			{
-				edge->sourceKey = srcKey;
-				edge->sourceCollection = srcCollection;
+				edge->sourceKey = [[srcKey mutableCopy] copy];
+				edge->sourceCollection = [[srcCollection mutableCopy] copy];
 			}
 			
 			// Does the edge on disk have a corresponding edge in memory that overrides it?
@@ -4918,8 +4918,8 @@ NS_INLINE BOOL URLMatchesURL(NSURL *url1, NSURL *url2)
 			
 			if (edge->destinationKey == nil)
 			{
-				edge->destinationKey = dstKey;
-				edge->destinationCollection = dstCollection;
+				edge->destinationKey = [[dstKey mutableCopy] copy];
+				edge->destinationCollection = [[dstCollection mutableCopy] copy];
 			}
 			
 			// Does the edge on disk have a corresponding edge in memory that overrides it?
@@ -5513,14 +5513,14 @@ NS_INLINE BOOL URLMatchesURL(NSURL *url1, NSURL *url2)
 			
 			if (edge->sourceKey == nil)
 			{
-				edge->sourceKey = srcKey;
-				edge->sourceCollection = srcCollection;
+				edge->sourceKey = [[srcKey mutableCopy] copy];
+				edge->sourceCollection = [[srcCollection mutableCopy] copy];
 			}
 			
 			if (edge->destinationKey == nil)
 			{
-				edge->destinationKey = dstKey;
-				edge->destinationCollection = dstCollection;
+				edge->destinationKey = [[dstKey mutableCopy] copy];
+				edge->destinationCollection = [[dstCollection mutableCopy] copy];
 			}
 			
 			// Does the edge on disk have a corresponding edge in memory that overrides it?
@@ -5839,8 +5839,8 @@ NS_INLINE BOOL URLMatchesURL(NSURL *url1, NSURL *url2)
 			
 			if (edge->sourceKey == nil)
 			{
-				edge->sourceKey = srcKey;
-				edge->sourceCollection = srcCollection;
+				edge->sourceKey = [[srcKey mutableCopy] copy];
+				edge->sourceCollection = [[srcCollection mutableCopy] copy];
 			}
 			
 			// Does the edge on disk have a corresponding edge in memory that overrides it?

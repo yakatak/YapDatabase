@@ -24,12 +24,12 @@
 		if (aCollection == nil)
 			collection = @"";
 		else
-			collection = [aCollection copy]; // copy == retain if aCollection is immutable
+			collection = [[aCollection mutableCopy] copy]; // copy == retain if aCollection is immutable
 		
 		if (aKey == nil)
 			return nil;
 		else
-			key = [aKey copy];               // copy == retain if aKey is immutable
+			key = [[aKey mutableCopy] copy];               // copy == retain if aKey is immutable
 		
 		hash = YapMurmurHash2([collection hash], [key hash]);
 	}

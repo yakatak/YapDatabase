@@ -190,7 +190,7 @@
 		grouping = inGrouping;
 		sorting = inSorting;
 		
-		versionTag = inVersionTag ? [inVersionTag copy] : @"";
+		versionTag = inVersionTag ? [[inVersionTag mutableCopy] copy] : @"";
 		
 		options = inOptions ? [inOptions copy] : [[YapDatabaseViewOptions alloc] init];
 	}

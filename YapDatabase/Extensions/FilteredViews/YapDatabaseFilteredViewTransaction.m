@@ -1302,7 +1302,7 @@
 		return;
 	}
 	
-	NSString *newVersionTag = inVersionTag ? [inVersionTag copy] : @"";
+	NSString *newVersionTag = inVersionTag ? [[inVersionTag mutableCopy] copy] : @"";
 	
 	if ([[self versionTag] isEqualToString:newVersionTag])
 	{

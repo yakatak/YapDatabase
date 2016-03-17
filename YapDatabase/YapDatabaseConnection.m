@@ -4533,6 +4533,8 @@ NS_INLINE void __postWriteQueue(YapDatabaseConnection *connection)
 	// - YapDatabaseExtensionTransaction => [databaseTransaction extension:@"registeredNameOfExtension"]
 	
 	__block id extConnection = nil;
+
+    extName = [[extName mutableCopy] copy]; // Protect against Swift strings
 	
 	dispatch_block_t block = ^{
 		
@@ -4597,6 +4599,8 @@ NS_INLINE void __postWriteQueue(YapDatabaseConnection *connection)
 - (BOOL)registerExtension:(YapDatabaseExtension *)extension withName:(NSString *)extensionName
 {
 	NSAssert(dispatch_get_specific(database->IsOnWriteQueueKey), @"Must go through writeQueue.");
+
+    extensionName = [[extensionName mutableCopy] copy]; // Protected against Swift strings
 	
 	__block BOOL result = NO;
 	
@@ -4654,12 +4658,14 @@ NS_INLINE void __postWriteQueue(YapDatabaseConnection *connection)
 - (void)unregisterExtensionWithName:(NSString *)extensionName
 {
 	NSAssert(dispatch_get_specific(database->IsOnWriteQueueKey), @"Must go through writeQueue.");
+
+    extensionName = [[extensionName mutableCopy] copy]; // Protected against Swift strings
 	
 	dispatch_sync(connectionQueue, ^{ @autoreleasepool {
 		
 		YapDatabaseReadWriteTransaction *transaction = [self newReadWriteTransaction];
 		[self preReadWriteTransaction:transaction];
-		
+
 		// Unregister the given extension
 		
 		YapDatabaseExtension *extension = [registeredExtensions objectForKey:extensionName];

@@ -46,7 +46,7 @@
 {
 	YapDatabaseViewSectionChange *op = [[YapDatabaseViewSectionChange alloc] init];
 	op->type = YapDatabaseViewChangeInsert;
-	op->group = group;
+	op->group = [[group mutableCopy] copy];
 	op->isReset = NO;
 	op->originalSection = op->finalSection = NSNotFound;
 	
@@ -57,7 +57,7 @@
 {
 	YapDatabaseViewSectionChange *op = [[YapDatabaseViewSectionChange alloc] init];
 	op->type = YapDatabaseViewChangeDelete;
-	op->group = group;
+	op->group = [[group mutableCopy] copy];
 	op->isReset = NO;
 	op->originalSection = op->finalSection = NSNotFound;
 	
@@ -68,7 +68,7 @@
 {
 	YapDatabaseViewSectionChange *op = [[YapDatabaseViewSectionChange alloc] init];
 	op->type = YapDatabaseViewChangeDelete;
-	op->group = group;
+	op->group = [[group mutableCopy] copy];
 	op->isReset = YES;
 	op->originalSection = op->finalSection = NSNotFound;
 	
@@ -237,7 +237,7 @@
 	op->originalGroup = nil;                              // invalid in insert type
 	op->originalIndex = op->opOriginalIndex = NSNotFound; // invalid in insert type
 	
-	op->finalGroup = group;
+	op->finalGroup = [[group mutableCopy] copy];
 	op->finalIndex = op->opFinalIndex = index;
 	
 	op->originalSection = op->finalSection = NSNotFound;
@@ -254,7 +254,7 @@
 	op->collectionKey = collectionKey;
 	op->changes = YapDatabaseViewChangedObject | YapDatabaseViewChangedMetadata;
 	
-	op->originalGroup = group;
+	op->originalGroup = [[group mutableCopy] copy];
 	op->originalIndex = op->opOriginalIndex = index;
 	
 	op->finalGroup = nil;                           // invalid in delete type
@@ -275,10 +275,10 @@
 	op->collectionKey = collectionKey;
 	op->changes = flags;
 	
-	op->originalGroup = group;
+	op->originalGroup = [[group mutableCopy] copy];
 	op->originalIndex = op->opOriginalIndex = index;
 	
-	op->finalGroup = group;
+	op->finalGroup = [[group mutableCopy] copy];
 	op->finalIndex = op->opFinalIndex = index;
 	
 	op->originalSection = op->finalSection = NSNotFound;

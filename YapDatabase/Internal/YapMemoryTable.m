@@ -350,6 +350,10 @@
 	
 	if (changedKeys == nil)
 		changedKeys = [[NSMutableSet alloc] init];
+
+    if ([key isKindOfClass:[NSString class]]) {
+        key = [[key mutableCopy] copy];
+    }
 	
 	dispatch_block_t block = ^{ @autoreleasepool {
 		
@@ -391,6 +395,10 @@
 		NSAssert(NO, @"Cannot modify table in read-only transaction.");
 		return;
 	}
+
+    if ([key isKindOfClass:[NSString class]]) {
+        key = [[key mutableCopy] copy];
+    }
 	
 	if (changedKeys == nil)
 		changedKeys = [[NSMutableSet alloc] init];
@@ -494,10 +502,15 @@
 					newValue->olderValue = value;
 					newValue->object = nil;
 					newValue->snapshot = snapshot;
+
+                    NSString *keyCopy = key;
+                    if ([key isKindOfClass:[NSString class]]) {
+                        keyCopy = [[key mutableCopy] copy];
+                    }
 					
-					[table->dict setObject:newValue forKey:key];
+					[table->dict setObject:newValue forKey:keyCopy];
 					
-					[changedKeys addObject:key];
+					[changedKeys addObject:keyCopy];
 				}
 			}
 		}
@@ -552,13 +565,17 @@
 			else
 			{
 				// First update for this key during this transaction.
+                NSString *keyCopy = key;
+                if ([key isKindOfClass:[NSString class]]) {
+                    keyCopy = [[key mutableCopy] copy];
+                }
 				
 				YapMemoryTableValue *newValue = [[YapMemoryTableValue alloc] init];
 				newValue->olderValue = value;
 				newValue->object = nil;
 				newValue->snapshot = snapshot;
 				
-				[table->dict setObject:newValue forKey:key];
+				[table->dict setObject:newValue forKey:keyCopy];
 			}
 		}
 	}};

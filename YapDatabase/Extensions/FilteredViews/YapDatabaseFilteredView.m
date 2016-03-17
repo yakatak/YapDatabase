@@ -73,11 +73,11 @@
 	
 	if ((self = [super init]))
 	{
-		parentViewName = [inParentViewName copy];
+		parentViewName = [[inParentViewName mutableCopy] copy];
 		
 		filtering = inFiltering;
 		
-		versionTag = inVersionTag ? [inVersionTag copy] : @"";
+		versionTag = inVersionTag ? [[inVersionTag mutableCopy] copy] : @"";
 		
 		options = inOptions ? [inOptions copy] : [[YapDatabaseViewOptions alloc] init];
 	}

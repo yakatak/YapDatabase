@@ -83,10 +83,10 @@
 	
 	if ((self = [super init]))
 	{
-		name = [inName copy];
+		name = [[inName mutableCopy] copy];
 		
-		destinationKey = [dstKey copy];
-		destinationCollection = dstCollection ? [dstCollection copy] : @"";
+		destinationKey = [[dstKey mutableCopy] copy];
+		destinationCollection = dstCollection ? [[dstCollection mutableCopy] copy] : @"";
 		
 		nodeDeleteRules = rules;
 		isManualEdge = NO;
@@ -106,7 +106,7 @@
 	
 	if ((self = [super init]))
 	{
-		name = [inName copy];
+		name = [[inName mutableCopy] copy];
 		
 		destinationFileURL = [dstFileURL copy];
 		
@@ -137,13 +137,13 @@
 	
 	if ((self = [super init]))
 	{
-		name = [inName copy];
+		name = [[inName mutableCopy] copy];
 		
-		sourceKey = [srcKey copy];
-		sourceCollection = srcCollection ? [srcCollection copy] : @"";
+		sourceKey = [[srcKey mutableCopy] copy];
+		sourceCollection = srcCollection ? [[srcCollection mutableCopy] copy] : @"";
 		
-		destinationKey = [dstKey copy];
-		destinationCollection = dstCollection ? [dstCollection copy] : @"";
+		destinationKey = [[dstKey mutableCopy] copy];
+		destinationCollection = dstCollection ? [[dstCollection mutableCopy] copy] : @"";
 		
 		nodeDeleteRules = rules;
 		isManualEdge = YES;
@@ -162,10 +162,10 @@
 	
 	if ((self = [super init]))
 	{
-		name = [inName copy];
+		name = [[inName mutableCopy] copy];
 		
-		sourceKey = [srcKey copy];
-		sourceCollection = srcCollection ? [srcCollection copy] : @"";
+		sourceKey = [[srcKey mutableCopy] copy];
+		sourceCollection = srcCollection ? [[srcCollection mutableCopy] copy] : @"";
 		
 		destinationFileURL = [dstFileURL copy];
 		
@@ -193,7 +193,7 @@
 {
 	if ((self = [super init]))
 	{
-		name = [inName copy];
+		name = [[inName mutableCopy] copy];
 		destinationFileURLData = dstData;
 		nodeDeleteRules = (unsigned short)rules;
 		isManualEdge = manual;
@@ -243,8 +243,8 @@
 	YapDatabaseRelationshipEdge *copy = [[YapDatabaseRelationshipEdge alloc] init];
 	
 	copy->name = name;
-	copy->sourceKey = [newSrcKey copy];
-	copy->sourceCollection = [newSrcCollection copy];
+	copy->sourceKey = [[newSrcKey mutableCopy] copy];
+	copy->sourceCollection = [[newSrcCollection mutableCopy] copy];
 	copy->destinationKey = destinationKey;
 	copy->destinationCollection = destinationCollection;
 	copy->destinationFileURL = destinationFileURL;

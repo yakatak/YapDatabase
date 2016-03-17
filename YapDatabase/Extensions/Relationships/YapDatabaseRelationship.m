@@ -75,7 +75,7 @@
 {
 	if ((self = [super init]))
 	{
-		versionTag = inVersionTag ? [inVersionTag copy] : @"";
+		versionTag = inVersionTag ? [[inVersionTag mutableCopy] copy] : @"";
 		options = inOptions ? [inOptions copy] : [[YapDatabaseRelationshipOptions alloc] init];
 	}
 	return self;

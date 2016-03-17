@@ -38,6 +38,10 @@ static const NSUInteger YapCacheDefaultCountLimit = 40;
 	if ((self = [super init]))
 	{
 		key = aKey;
+
+        if ([aValue isKindOfClass:[NSString class]]) {
+            aValue = [[aValue mutableCopy] copy];
+        }
 		value = aValue;
 	}
 	return self;
@@ -209,6 +213,10 @@ static const NSUInteger YapCacheDefaultCountLimit = 40;
 	AssertAllowedKeyClass(key, allowedKeyClasses);
 	AssertAllowedObjectClass(object, allowedObjectClasses);
 	#endif
+
+    if ([key isKindOfClass:[NSString class]]) {
+        key = [[key mutableCopy] copy];
+    }
 	
 	YapCacheItem *item = CFDictionaryGetValue(cfdict, (const void *)key);
 	if (item)
