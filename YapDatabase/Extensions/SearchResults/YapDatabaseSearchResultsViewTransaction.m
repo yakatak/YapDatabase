@@ -1131,6 +1131,7 @@ static NSString *const ext_key_query             = @"query";
 			      (YapDatabaseViewGroupingWithKeyBlock)grouping->block;
 				
 				group = groupingBlock(databaseTransaction, collection, key);
+                group = [[group mutableCopy] copy]; // Protection from Swift strings
 			}
 			else if (grouping->blockType == YapDatabaseBlockTypeWithObject)
 			{
@@ -1138,6 +1139,7 @@ static NSString *const ext_key_query             = @"query";
 			      (YapDatabaseViewGroupingWithObjectBlock)grouping->block;
 				
 				group = groupingBlock(databaseTransaction, collection, key, object);
+                group = [[group mutableCopy] copy]; // Protection from Swift strings
 			}
 			else if (grouping->blockType == YapDatabaseBlockTypeWithMetadata)
 			{
@@ -1145,6 +1147,7 @@ static NSString *const ext_key_query             = @"query";
 			      (YapDatabaseViewGroupingWithMetadataBlock)grouping->block;
 				
 				group = groupingBlock(databaseTransaction, collection, key, metadata);
+                group = [[group mutableCopy] copy]; // Protection from Swift strings
 			}
 			else
 			{
@@ -1152,6 +1155,7 @@ static NSString *const ext_key_query             = @"query";
 			      (YapDatabaseViewGroupingWithRowBlock)grouping->block;
 				
 				group = groupingBlock(databaseTransaction, collection, key, object, metadata);
+                group = [[group mutableCopy] copy]; // Protection from Swift strings
 			}
 		}
 	}
@@ -1263,6 +1267,7 @@ static NSString *const ext_key_query             = @"query";
 			      (YapDatabaseViewGroupingWithKeyBlock)grouping->block;
 				
 				group = groupingBlock(databaseTransaction, collection, key);
+                group = [[group mutableCopy] copy]; // Protection from Swift strings
 			}
 			else if (grouping->blockType == YapDatabaseBlockTypeWithObject)
 			{
@@ -1270,6 +1275,7 @@ static NSString *const ext_key_query             = @"query";
 			      (YapDatabaseViewGroupingWithObjectBlock)grouping->block;
 				
 				group = groupingBlock(databaseTransaction, collection, key, object);
+                group = [[group mutableCopy] copy]; // Protection from Swift strings
 			}
 			else if (grouping->blockType == YapDatabaseBlockTypeWithMetadata)
 			{
@@ -1277,6 +1283,7 @@ static NSString *const ext_key_query             = @"query";
 			      (YapDatabaseViewGroupingWithMetadataBlock)grouping->block;
 				
 				group = groupingBlock(databaseTransaction, collection, key, metadata);
+                group = [[group mutableCopy] copy]; // Protection from Swift strings
 			}
 			else
 			{
@@ -1284,6 +1291,7 @@ static NSString *const ext_key_query             = @"query";
 			      (YapDatabaseViewGroupingWithRowBlock)grouping->block;
 				
 				group = groupingBlock(databaseTransaction, collection, key, object, metadata);
+                group = [[group mutableCopy] copy]; // Protection from Swift strings
 			}
 		}
 	}
@@ -1564,6 +1572,7 @@ static NSString *const ext_key_query             = @"query";
 			          (YapDatabaseViewGroupingWithObjectBlock)grouping->block;
 					
 					group = groupingBlock(databaseTransaction, collection, key, object);
+                    group = [[group mutableCopy] copy]; // Protection from Swift strings
 				}
 				else
 				{
@@ -1572,6 +1581,7 @@ static NSString *const ext_key_query             = @"query";
 					
 					metadata = [databaseTransaction metadataForCollectionKey:collectionKey withRowid:rowid];
 					group = groupingBlock(databaseTransaction, collection, key, object, metadata);
+                    group = [[group mutableCopy] copy]; // Protection from Swift strings
 				}
 			}
 			
@@ -1856,6 +1866,7 @@ static NSString *const ext_key_query             = @"query";
 			          (YapDatabaseViewGroupingWithMetadataBlock)grouping->block;
 					
 					group = groupingBlock(databaseTransaction, collection, key, metadata);
+                    group = [[group mutableCopy] copy]; // Protection from Swift strings
 				}
 				else
 				{
@@ -1864,6 +1875,7 @@ static NSString *const ext_key_query             = @"query";
 					
 					object = [databaseTransaction objectForCollectionKey:collectionKey withRowid:rowid];
 					group = groupingBlock(databaseTransaction, collection, key, object, metadata);
+                    group = [[group mutableCopy] copy]; // Protection from Swift strings
 				}
 			}
 			
@@ -2324,6 +2336,7 @@ static NSString *const ext_key_query             = @"query";
 			      (YapDatabaseViewGroupingWithKeyBlock)grouping->block;
 				
 				group = groupingBlock(databaseTransaction, ck.collection, ck.key);
+                group = [[group mutableCopy] copy]; // Protection from Swift strings
 			}
 			else if (grouping->blockType == YapDatabaseBlockTypeWithObject)
 			{
@@ -2333,6 +2346,7 @@ static NSString *const ext_key_query             = @"query";
 				object = [databaseTransaction objectForCollectionKey:ck withRowid:rowid];
 				
 				group = groupingBlock(databaseTransaction, ck.collection, ck.key, object);
+                group = [[group mutableCopy] copy]; // Protection from Swift strings
 			}
 			else if (grouping->blockType == YapDatabaseBlockTypeWithMetadata)
 			{
@@ -2342,6 +2356,7 @@ static NSString *const ext_key_query             = @"query";
 				metadata = [databaseTransaction metadataForCollectionKey:ck withRowid:rowid];
 				
 				group = groupingBlock(databaseTransaction, ck.collection, ck.key, metadata);
+                group = [[group mutableCopy] copy]; // Protection from Swift strings
 			}
 			else
 			{
@@ -2351,6 +2366,7 @@ static NSString *const ext_key_query             = @"query";
 				[databaseTransaction getObject:&object metadata:&metadata forCollectionKey:ck withRowid:rowid];
 				
 				group = groupingBlock(databaseTransaction, ck.collection, ck.key, object, metadata);
+                group = [[group mutableCopy] copy]; // Protection from Swift strings
 			}
 		}
 		
