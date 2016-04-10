@@ -49,8 +49,8 @@ Pod::Spec.new do |s|
         ssee.source_files = 'YapDatabase/Extensions/SecondaryIndex/**/*.{h,m,mm,c}'
       end
       
-      sse.subspec 'SecondaryIndex' do |ssee|
-        ssee.source_files = 'YapDatabase/Extensions/SecondaryIndex/**/*.{h,m,mm,c}'
+      sse.subspec 'CrossProcessNotification' do |ssee|
+        ssee.source_files = 'YapDatabase/Extensions/CrossProcessNotification/**/*.{h,m,mm,c}'
       end
       
       sse.subspec 'Relationships' do |ssee|
@@ -88,6 +88,12 @@ Pod::Spec.new do |s|
         ssee.source_files = 'YapDatabase/Extensions/ConnectionProxy/**/*.{h,m,mm,c}'
       end
       
+      sse.subspec 'ActionManager' do |ssee|
+        ssee.dependency 'Reachability', '~> 3'
+        ssee.dependency 'YapDatabase/Standard/Extensions/Views'
+        ssee.source_files = 'YapDatabase/Extensions/ActionManager/**/*.{h,m,mm,c}'
+      end
+      
     end
   
   end
@@ -114,8 +120,8 @@ Pod::Spec.new do |s|
         ssee.source_files = 'YapDatabase/Extensions/SecondaryIndex/**/*.{h,m,mm,c}'
       end
       
-      sse.subspec 'SecondaryIndex' do |ssee|
-        ssee.source_files = 'YapDatabase/Extensions/SecondaryIndex/**/*.{h,m,mm,c}'
+      sse.subspec 'CrossProcessNotification' do |ssee|
+        ssee.source_files = 'YapDatabase/Extensions/CrossProcessNotification/**/*.{h,m,mm,c}'
       end
       
       sse.subspec 'Relationships' do |ssee|
@@ -151,6 +157,12 @@ Pod::Spec.new do |s|
       
       sse.subspec 'ConnectionProxy' do |ssee|
         ssee.source_files = 'YapDatabase/Extensions/ConnectionProxy/**/*.{h,m,mm,c}'
+      end
+      
+      sse.subspec 'ActionManager' do |ssee|
+        ssee.dependency 'Reachability', '~> 3'
+        ssee.dependency 'YapDatabase/SQLCipher/Extensions/Views'
+        ssee.source_files = 'YapDatabase/Extensions/ActionManager/**/*.{h,m,mm,c}'
       end
       
     end
