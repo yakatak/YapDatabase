@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "YapDatabase"
-  s.version      = "2.8.3"
+  s.version      = "2.9.0"
   s.summary      = "A key/value store built atop sqlite for iOS & Mac."
   s.homepage     = "https://github.com/yapstudios/YapDatabase"
   s.license      = 'MIT'
@@ -88,11 +88,11 @@ Pod::Spec.new do |s|
         ssee.source_files = 'YapDatabase/Extensions/ConnectionProxy/**/*.{h,m,mm,c}'
       end
       
-      sse.subspec 'ActionManager' do |ssee|
-        ssee.dependency 'Reachability', '~> 3'
-        ssee.dependency 'YapDatabase/Standard/Extensions/Views'
-        ssee.source_files = 'YapDatabase/Extensions/ActionManager/**/*.{h,m,mm,c}'
-      end
+      #sse.subspec 'ActionManager' do |ssee|
+      #  ssee.dependency 'Reachability', '~> 3'
+      #  ssee.dependency 'YapDatabase/Standard/Extensions/Views'
+      #  ssee.source_files = 'YapDatabase/Extensions/ActionManager/**/*.{h,m,mm,c}'
+      #end
       
     end
   
@@ -159,11 +159,11 @@ Pod::Spec.new do |s|
         ssee.source_files = 'YapDatabase/Extensions/ConnectionProxy/**/*.{h,m,mm,c}'
       end
       
-      sse.subspec 'ActionManager' do |ssee|
-        ssee.dependency 'Reachability', '~> 3'
-        ssee.dependency 'YapDatabase/SQLCipher/Extensions/Views'
-        ssee.source_files = 'YapDatabase/Extensions/ActionManager/**/*.{h,m,mm,c}'
-      end
+      #sse.subspec 'ActionManager' do |ssee|
+      #  ssee.dependency 'Reachability', '~> 3'
+      #  ssee.dependency 'YapDatabase/SQLCipher/Extensions/Views'
+      #  ssee.source_files = 'YapDatabase/Extensions/ActionManager/**/*.{h,m,mm,c}'
+      #end
       
     end
   
